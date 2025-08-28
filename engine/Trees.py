@@ -39,3 +39,8 @@ def decision_tree(X_train, y_train):
     """
 
     return model
+
+def random_forest(X_train, y_train):
+    model = RandomForestClassifier(n_estimators=100, max_depth=6, max_features='sqrt', bootstrap=True, max_samples=0.8, random_state=42)
+    model.fit(X_train, y_train)
+    return model

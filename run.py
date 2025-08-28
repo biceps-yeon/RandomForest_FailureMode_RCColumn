@@ -1,6 +1,6 @@
 import pandas as pd
 from engine.DataLoader import load_data
-from engine.Trees import decision_tree
+from engine.Trees import decision_tree, random_forest
 from engine.SplitData import data_split
 
 import sklearn
@@ -15,6 +15,7 @@ from sklearn import tree
 x, y = load_data()
 X_train, X_test, y_train, y_test = data_split(x, y)
 model = decision_tree(X_train, y_train)
+#model = random_forest(X_train, y_train)
 
 print(model.score(X_train, y_train))
 print(model.score(X_test, y_test))
