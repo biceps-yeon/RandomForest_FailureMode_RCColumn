@@ -7,6 +7,9 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import matplotlib.pyplot as plt
 from sklearn import tree
 
+import seaborn as sns
+import numpy as np
+
 def decision_tree(X_train, y_train):
 
     # 모델 학습
@@ -17,30 +20,24 @@ def decision_tree(X_train, y_train):
     # 결정트리 규칙을 시각화
     plt.figure( figsize=(20,15) )
     tree.plot_tree(model, 
-               class_names=y.unique(),
-               feature_names=x.columns,
+               class_names=y_train.unique(),
+               feature_names=X_train.columns,
                impurity=True, filled=True,
                rounded=True)
     plt.show()
     """
 
-    """
-    import seaborn as sns
-    import numpy as np
-    #matplotlib inline
-
     # feature별 importance 매핑
-    for name, value in zip(x.columns , model.feature_importances_):
+    for name, value in zip(X_train.columns , model.feature_importances_):
         print('{} : {:.3f}'.format(name, value))
 
     # feature importance를 column 별로 시각화 하기 
-    sns.barplot(x=model.feature_importances_ , y=x.columns)
+    sns.barplot(x=model.feature_importances_ , y=X_train.columns)
     plt.show()
-    """
 
     return model
 
 def random_forest(X_train, y_train):
-    model = RandomForestClassifier(n_estimators=100, max_depth=6, max_features='sqrt', bootstrap=True, max_samples=0.8, random_state=42)
+    model = RandomForestClassifier(n_estimators=45, max_depth=6, max_features='sqrt', bootstrap=True, max_samples=0.8, random_state=42)
     model.fit(X_train, y_train)
     return model

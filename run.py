@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from engine.DataLoader import load_data
 from engine.Trees import decision_tree, random_forest
 from engine.SplitData import data_split
@@ -12,11 +13,13 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import matplotlib.pyplot as plt
 from sklearn import tree
 
+
 x, y = load_data()
 X_train, X_test, y_train, y_test = data_split(x, y)
 model = decision_tree(X_train, y_train)
 #model = random_forest(X_train, y_train)
 
 print(model.score(X_train, y_train))
-print(model.score(X_test, y_test))
+print(model.score(x, y))
 
+###################졸업논문에서 제외된 실험체들 반영해야함################
