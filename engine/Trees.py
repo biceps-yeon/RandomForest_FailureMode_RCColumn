@@ -41,3 +41,8 @@ def random_forest(X_train, y_train):
     model = RandomForestClassifier(n_estimators=45, max_depth=6, max_features='sqrt', bootstrap=True, max_samples=0.8, random_state=42)
     model.fit(X_train, y_train)
     return model
+
+def grad_boost_DT(x_train, y_train):
+    model = sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+    model.fit(x_train, y_train)
+    return model

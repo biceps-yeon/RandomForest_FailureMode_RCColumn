@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from engine.DataLoader import load_data
-from engine.Trees import decision_tree, random_forest
+from engine.Trees import decision_tree, random_forest, grad_boost_DT
 from engine.SplitData import data_split
 
 import sklearn
@@ -16,10 +16,11 @@ from sklearn import tree
 
 x, y = load_data()
 X_train, X_test, y_train, y_test = data_split(x, y)
-model = decision_tree(X_train, y_train)
+#model = decision_tree(X_train, y_train)
 #model = random_forest(X_train, y_train)
+model = grad_boost_DT(X_train, y_train)
 
 print(model.score(X_train, y_train))
 print(model.score(x, y))
 
-###################졸업논문에서 제외된 실험체들 반영해야함################
+###################xgboost 시작################
